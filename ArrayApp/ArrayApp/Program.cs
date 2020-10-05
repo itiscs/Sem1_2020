@@ -10,55 +10,48 @@ namespace ArrayApp
     {
         static void Main(string[] args)
         {
-            Random r = new Random();
-
-            int N = 10;
-
-            int[] mas = new int[N];
-
-            int sum = 0, k = 0, prod = 1;
-
-            int max;// = int.MinValue;
-
-
+            
+            int[] mas = { 1, 2, 3, 3, 4, 2, 56, 5, 3 };
+            int N = mas.Length;
+            //Random r = new Random();
+            //for (int i = 0; i < N; i++)
+            //    mas[i] = r.Next(0, 10);
             for (int i = 0; i < N; i++)
-                mas[i] = r.Next(-10,10);
+                Console.Write($"{mas[i]} ");
+            Console.WriteLine();
 
-
-            max = mas[0];
-            int imax = 0;
-
+            int kolvo = 0, kolvo2 = 0; ;
             for (int i = 0; i < N; i++)
             {
-                Console.WriteLine($"mas[{i}] = {mas[i]}");
-                if (mas[i] >= 0)
+                bool noRepeat = true;
+                for (int i1 = i + 1; i1 < N; i1++)
                 {
-                    sum += mas[i];
-                    k++;
+                    if (mas[i] == mas[i1])
+                    {
+                        noRepeat = false;
+                        break;
+                    }
                 }
-                else 
+                if (noRepeat)
+                    kolvo++;
+
+                bool isUnique = true; 
+                for (int i1 = 0; i1 < N; i1++)
                 {
-                    prod *= mas[i];
+                    if (mas[i] == mas[i1] && i != i1)
+                    {
+                        isUnique = false;
+                        break;
+                    }
                 }
-                if (mas[i] > max)
-                {
-                    max = mas[i];
-                    imax = i;
-                }
+                if (isUnique)
+                    kolvo2++;
+
+
+
             }
-
-
-            Console.WriteLine($"sum = {sum} avg = {(double)sum/k}");
-
-            Console.WriteLine($"prod = {prod}");
-
-            Console.WriteLine($"Max = {max}  = mas[{imax}]");
-
-
-
-            //int x = 10;
-
-
+            Console.WriteLine($"Различные {kolvo}");
+            Console.WriteLine($"Уникальные {kolvo2}");
 
 
 

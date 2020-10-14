@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID представляет идентификатор typelib, если этот проект доступен из модели COM
-[assembly: Guid("c7e8216e-c59c-44d0-85a0-cb0d487326cf")]
+[assembly: Guid("04bdc475-31b9-4d8e-b69c-23568dc6c647")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //

@@ -15,6 +15,8 @@ namespace ListApp
             int[] mas = new int[10];
 
             List<int> lst = new List<int>();
+            List<int> lst3 = new List<int>(){ 3, 4, 6, 8, 0 };
+
 
             int n = r.Next(10, 20);
             for (int i = 0; i < n; i++)

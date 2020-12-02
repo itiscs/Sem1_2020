@@ -9,6 +9,14 @@ namespace RecursionApp
     class Program
     {
 
+        static long Fibonachi(int k)
+        {
+            if (k == 1 || k == 2)
+                return 1;
+
+            return Fibonachi(k - 2) + Fibonachi(k - 1);
+        }
+          
         static long Factorial(int k)
         {
             if (k == 0 || k == 1)

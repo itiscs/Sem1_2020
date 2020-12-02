@@ -148,6 +148,49 @@ namespace AppSort
             //}
             //return -1;
         }
+        
+
+        static int[] MergeSort(int[] mas, int l, int r)
+        {
+            if(l == r) // остался кусок массива их одного элемента
+            {
+                int[] mas1 = new int[1];
+                mas1[0] = mas[r];
+                Console.Write($"l - {l} r - {r}  mas: ");
+                ShowArray(mas1);
+                return mas1; 
+            }
+            int m = (l + r) / 2;
+            var mas_left  = MergeSort(mas, l, m);
+            var mas_right = MergeSort(mas, m + 1, r);
+
+            int left_size = mas_left.Length;
+            int right_size = mas_right.Length;
+            int merge_size = left_size + right_size;
+            int[] mas_merge = new int[merge_size];
+
+            int k = 0, n = 0;
+            for (int i = 0; i < mas_merge.Length; i++)
+            {
+                if (k >= left_size)//mas_left закончился
+                    mas_merge[i] = mas_right[n++];
+
+                else if (n >= right_size)//mas_right закончился
+                    mas_merge[i] = mas_left[k++];
+
+                else  // оба массива ещё есть
+                {
+                    if (mas_left[k] < mas_right[n])
+                        mas_merge[i] = mas_left[k++];
+                    else
+                        mas_merge[i] = mas_right[n++];
+                }
+            }
+            Console.Write($"l - {l} r - {r}  mas: ");
+            ShowArray(mas_merge);
+            return mas_merge;
+        }
+
 
 
 
@@ -163,19 +206,25 @@ namespace AppSort
             //Console.WriteLine("Первая сортировка:");
             //ShowArray(a);
             // отриц влево, положительные вправо
-            BubbleSort(a);
+            //BubbleSort(a);
             //Console.WriteLine("Cортировка пузырьком:");
             //ShowArray(a);
 
 
             //SortTry(a);
-            Console.WriteLine("Cортировка пузырьком:");
+            //Console.WriteLine("Cортировка максимумами:");
+            //ShowArray(a);
+
+            a = MergeSort(a, 0, a.Length - 1);
+            Console.WriteLine("Cортировка слиянием:");
             ShowArray(a);
 
-            int x = int.Parse(Console.ReadLine());
-            var ind = BinSearch(a, x);
 
-            Console.WriteLine($"Номер элемента: {ind}");
+
+            //int x = int.Parse(Console.ReadLine());
+            //var ind = BinSearch(a, x);
+
+            //Console.WriteLine($"Номер элемента: {ind}");
 
 
 

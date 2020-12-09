@@ -6,22 +6,24 @@ using System.Threading.Tasks;
 
 namespace FractionApp
 {
-    class Fraction
+    public class Fraction
     {
         private int chisl;
         private int znam;
 
-        public Fraction()
-        {
-            chisl = 0;
-            znam = 1;
-        }
+        public Fraction() : this(0,1) { }
+        //{
+        // chisl = 0;
+        // znam = 1;
+        //}
 
-        public Fraction(int ch)
-        {
-            chisl = ch;
-            znam = 1;
-        }
+        public Fraction(int ch) : this(ch, 1) { }
+        //{
+        // chisl = ch;
+        // znam = 1;
+        //}
+
+        //public Fraction(string ch) : this(int.Parse(ch), 1) { }
 
         public Fraction(int ch, int zn)
         {
@@ -48,6 +50,40 @@ namespace FractionApp
                 b = a % (a = b);
             return a;
         }
+
+
+        public int Chisl
+        {
+            get 
+            {
+                return chisl;
+            }
+            set
+            {
+                
+                chisl = value;
+                Sokr();
+            }
+        }
+
+        public int Znam
+        {
+            get
+            {
+                return znam;
+            }
+            set
+            {
+                if (value != 0)
+                    znam = value;
+                else
+                    throw new DivideByZeroException();
+                Sokr();
+
+            }
+        }
+
+
 
         public void SetChisl(int c)
         {
@@ -81,6 +117,16 @@ namespace FractionApp
                 Console.WriteLine($"{chisl}/{znam}");
         }
 
+        public override string ToString()
+        {
+            if (znam == 1)
+                return $"{chisl}";
+
+            return $"{chisl}/{znam}";
+        }
+
+
+
         //создание новой дроби A + B 
         public static Fraction Add(Fraction a, Fraction b)
         {
@@ -95,13 +141,21 @@ namespace FractionApp
         //добавим параметр к this:   this = this + A 
         public void Add(Fraction a)
         {
-            chisl = chisl * a.znam + znam * a.chisl;
+            chisl = chisl * a.Znam + znam * a.Chisl;
             znam = znam * a.znam;
             Sokr();
         }
 
+        public bool GreaterThan(Fraction a)
+        {
+            throw new NotImplementedException();
+        }
+        public bool LessThan(Fraction a)
+        {
+            throw new NotImplementedException();
+        }
 
-
+       
 
 
 

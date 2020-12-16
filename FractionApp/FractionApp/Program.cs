@@ -20,7 +20,7 @@ namespace FractionApp
 
             int x = 4;
             
-            Fraction dr1 = new Fraction(8,8);
+            Fraction dr1 = new Fraction(0,8);
             Console.WriteLine(dr1);
 
 
@@ -42,7 +42,7 @@ namespace FractionApp
 
 
 
-            Fraction dr3 = new Fraction(5);
+            Fraction dr3 = new Fraction(-5);
             dr3.ShowFraction();
 
 
@@ -55,11 +55,26 @@ namespace FractionApp
             dr4.ShowFraction();
 
 
-            var dr6 = Fraction.Add(dr4, dr2);
-            Console.WriteLine($"{dr4} + {dr2} = {dr6}");
+            //var dr6 = Fraction.Add(dr4, dr2);
+            Console.WriteLine($"{dr4} + {dr2} = {dr2 + dr4}");
 
+            var dr5 = new Fraction(6, 10);
+            //dr5++;
 
+            Console.WriteLine($"{dr5} < {dr1} : {dr5 < dr1}");
 
+            if (dr1)
+                Console.WriteLine("true!!!");
+            else
+                Console.WriteLine("false");
+
+            dr5++;
+            var k = (int) dr5;
+            Console.WriteLine(k);
+
+            int m = 3;
+            var dr7 = (Fraction)m;
+            Console.WriteLine(dr7);
 
 
         }

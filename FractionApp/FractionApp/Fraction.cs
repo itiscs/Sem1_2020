@@ -35,10 +35,14 @@ namespace FractionApp
             Sokr();
         }
 
-
         public void Sokr()
         {
-            var n = Nod(chisl, znam);
+            if(znam < 0)
+            {
+                znam = -znam;
+                chisl = -chisl;
+            }
+            var n = Nod(Math.Abs(chisl), Math.Abs(znam));
             chisl /= n;
             znam /= n;
 
@@ -137,6 +141,23 @@ namespace FractionApp
             return dr;
         }
 
+        public static Fraction operator+(Fraction a, Fraction b)
+        {
+            var dr = new Fraction();
+            dr.chisl = b.chisl * a.znam + b.znam * a.chisl;
+            dr.znam = a.znam * b.znam;
+            dr.Sokr();
+            return dr;
+        }
+
+        public static Fraction operator-(Fraction a, Fraction b)
+        {
+            var dr = new Fraction();
+            dr.chisl = a.chisl * b.znam - a.znam * b.chisl;
+            dr.znam = a.znam * b.znam;
+            dr.Sokr();
+            return dr;
+        }
 
         //добавим параметр к this:   this = this + A 
         public void Add(Fraction a)
@@ -155,8 +176,59 @@ namespace FractionApp
             throw new NotImplementedException();
         }
 
-       
+        public static bool operator>(Fraction a, Fraction b)
+        {
+            return (a - b).Chisl > 0;            
+        }
 
+        public static bool operator <(Fraction a, Fraction b)
+        {
+            return !(a > b);
+        }
+        public static bool operator >=(Fraction a, Fraction b)
+        {
+            return (a - b).Chisl >= 0;
+        }
+
+        public static bool operator <=(Fraction a, Fraction b)
+        {
+            return !(a >= b);
+        }
+
+        public static bool operator ==(Fraction a, Fraction b)
+        {
+            return (a - b).Chisl == 0;
+        }
+
+        public static bool operator !=(Fraction a, Fraction b)
+        {
+            return !(a == b);
+        }
+        
+        public static Fraction operator++ (Fraction a)
+        {
+            return new Fraction(a.Chisl+a.Znam,a.Znam);
+        }
+
+        public static bool operator false(Fraction a)
+        {
+            return a.Chisl == 0;
+        }
+
+        public static bool operator true(Fraction a)
+        {
+            return a.Chisl != 0;
+        }
+
+        public static implicit operator int(Fraction a)
+        {
+            return a.Chisl / a.Znam;
+        }
+
+        public static implicit operator Fraction(int a)
+        {
+            return new Fraction(a);
+        }
 
 
     }
